@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achref Boucenna - Cybersecurity Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff41;
+            --secondary: #0066ff;
+            --accent: #ff0066;
+            --success: #00ff88;
+            --warning: #ffaa00;
+            --error: #ff3366;
+            --cyber-green: #00ff41;
+            --cyber-blue: #0099ff;
+            --cyber-purple: #9933ff;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --gray-700: #2a2a2a;
+            --gray-600: #3a3a3a;
+            --gray-500: #4a4a4a;
+            --gray-400: #6a6a6a;
+            --gray-300: #8a8a8a;
+            --gray-200: #aaaaaa;
+            --gray-100: #cccccc;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-100);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Cybersecurity Background Effects */
+        .cyber-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
+        }
+
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            color: var(--cyber-green);
+            opacity: 0.3;
+            animation: matrixFall linear infinite;
+            text-shadow: 0 0 5px var(--cyber-green);
+        }
+
+        @keyframes matrixFall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .circuit-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 153, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(153, 51, 255, 0.1) 0%, transparent 50%);
+            animation: circuitPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes circuitPulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+
+        .network-nodes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .node {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--cyber-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyber-blue);
+            animation: nodePulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes nodePulse {
+            0% { 
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% { 
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+            opacity: 0.3;
+            animation: dataFlow 3s linear infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 255, 65, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--cyber-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Fira Code', monospace;
+            text-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px var(--cyber-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-200);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--cyber-green);
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.active {
+            color: var(--cyber-green);
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--cyber-green);
+            font-weight: 600;
+            margin-bottom: 24px;
+            font-family: 'Fira Code', monospace;
+            text-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--gray-300);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--cyber-green);
+            color: var(--dark-bg);
+            border-color: var(--cyber-green);
+            box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--cyber-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 255, 65, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--cyber-blue);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 4px 15px rgba(0, 153, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            background: var(--cyber-blue);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 153, 255, 0.4);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .hero-avatar {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyber-green), var(--cyber-blue), var(--cyber-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            color: var(--dark-bg);
+            font-weight: 700;
+            box-shadow: 0 20px 40px rgba(0, 255, 65, 0.3);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+        }
+
+        .hero-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, var(--cyber-green), var(--cyber-blue), var(--cyber-purple));
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 64px;
+            position: relative;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cyber-green), var(--cyber-blue));
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(26, 26, 46, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray-300);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .stat-card {
+            background: rgba(0, 255, 65, 0.1);
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 255, 65, 0.2);
+            border-color: var(--cyber-green);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--cyber-green);
+            display: block;
+            text-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .stat-label {
+            color: var(--gray-300);
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        /* Education Section */
+        .education {
+            background: rgba(22, 33, 62, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--cyber-green), var(--cyber-blue));
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 48px 0;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .timeline-content {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            width: 45%;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 255, 65, 0.2);
+            border-color: var(--cyber-green);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            width: 20px;
+            height: 20px;
+            background: var(--cyber-green);
+            border: 4px solid var(--dark-bg);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--cyber-green);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -46px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -46px;
+        }
+
+        .timeline-year {
+            background: var(--cyber-green);
+            color: var(--dark-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 16px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .timeline-subtitle {
+            color: var(--cyber-blue);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .timeline-description {
+            color: var(--gray-300);
+            line-height: 1.6;
+        }
+
+        .timeline-score {
+            background: var(--cyber-blue);
+            color: var(--white);
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .skill-category {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 32px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 255, 65, 0.2);
+            border-color: var(--cyber-green);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--cyber-green), var(--cyber-blue));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .skill-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-name {
+            color: var(--gray-300);
+            font-weight: 500;
+        }
+
+        .skill-level {
+            display: flex;
+            gap: 4px;
+        }
+
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0, 255, 65, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-dot.active {
+            background: var(--cyber-green);
+            box-shadow: 0 0 8px var(--cyber-green);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: rgba(22, 33, 62, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .experience-card {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cyber-green), var(--cyber-blue));
+            box-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 255, 65, 0.2);
+            border-color: var(--cyber-green);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .experience-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .experience-company {
+            color: var(--cyber-blue);
+            font-weight: 500;
+        }
+
+        .experience-date {
+            background: rgba(0, 255, 65, 0.2);
+            color: var(--cyber-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .experience-description {
+            color: var(--gray-300);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+        }
+
+        .contact-info {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(8px);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--cyber-green), var(--cyber-blue));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .contact-details h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .contact-details p {
+            color: var(--gray-300);
+        }
+
+        .contact-form {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-200);
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid rgba(0, 255, 65, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(10, 10, 10, 0.5);
+            color: var(--gray-200);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .timeline::before {
+                left: 32px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-content::before {
+                left: -46px !important;
+                right: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .hero-avatar {
+                width: 300px;
+                height: 300px;
+                font-size: 100px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .hero-avatar {
+                width: 250px;
+                height: 250px;
+                font-size: 80px;
+            }
+        }
+
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glitch effect for special elements */
+        .glitch {
+            position: relative;
+            color: var(--cyber-green);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--cyber-blue);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--accent);
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 14%, 15%, 49%, 50%, 99%, 100% {
+                transform: translate(0);
+            }
+            15%, 49% {
+                transform: translate(-2px, 2px);
+            }
+        }
+
+        @keyframes glitch-2 {
+            0%, 20%, 21%, 62%, 63%, 99%, 100% {
+                transform: translate(0);
+            }
+            21%, 62% {
+                transform: translate(2px, -2px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cybersecurity Background -->
+    <div class="cyber-background">
+        <div class="matrix-rain" id="matrixRain"></div>
+        <div class="circuit-pattern"></div>
+        <div class="network-nodes" id="networkNodes"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#home" class="logo glitch" data-text="AB">&lt;AB/&gt;</a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Accueil</a></li>
+                    <li><a href="#about" class="nav-link">À propos</a></li>
+                    <li><a href="#education" class="nav-link">Formation</a></li>
+                    <li><a href="#skills" class="nav-link">Compétences</a></li>
+                    <li><a href="#experience" class="nav-link">Expérience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Achref Boucenna</h1>
+                    <p class="hero-subtitle glitch" data-text="&gt; Cybersecurity_Student">&gt; Cybersecurity_Student</p>
+                    <p class="hero-description">
+                        Étudiant passionné en troisième année à l'École Nationale Supérieure de Technologies Avancées (ENSTA), 
+                        spécialisé en informatique et cybersécurité. Déterminé à contribuer à la sécurisation du monde numérique.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i data-lucide="mail"></i>
+                            Me contacter
+                        </a>
+                        <a href="#about" class="btn btn-outline">
+                            <i data-lucide="user"></i>
+                            En savoir plus
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-avatar">
+ <img src="pic.achref.jpg" alt="Achref's photo" style="width: 400px; height: 400px; border-radius: 50%;">
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title fade-in">À propos de moi</h2>
+            <div class="about-content">
+                <div class="fade-in">
+                    <p class="about-text">
+                        Je suis actuellement étudiant en troisième année à l'École Nationale Supérieure de Technologies 
+                        Avancées (ENSTA) à Dergana, Bordj El Kiffane. Je suis étudiant en informatique, spécialisé en cybersécurité.
+                    </p>
+                    <p class="about-text">
+                        Passionné par la sécurité informatique et les nouvelles technologies, je m'efforce constamment 
+                        d'approfondir mes connaissances dans ce domaine en évolution rapide. Mon objectif est de contribuer 
+                        à la protection des systèmes d'information et à la sécurisation de l'écosystème numérique.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Années d'études</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">17.34</span>
+                            <span class="stat-label">Moyenne Bac</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Langues parlées</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">6+</span>
+                            <span class="stat-label">Compétences Tech</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="skill-category">
+                        <div class="skill-icon">
+                            <i data-lucide="languages" style="color: #0a0a0a;"></i>
+                        </div>
+                        <h3 class="skill-title">Langues</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">
+                                <span class="skill-name">Français</span>
+                                <div class="skill-level">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name">Arabe</span>
+                                <div class="skill-level">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <span class="skill-name">Anglais</span>
+                                <div class="skill-level">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section education">
+        <div class="container">
+            <h2 class="section-title fade-in">Formation</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2025/2026</span>
+                        <h3 class="timeline-title">Troisième année - Spécialité Cybersécurité</h3>
+                        <p class="timeline-subtitle">ENSTA Dergana</p>
+                        <p class="timeline-description">
+                            Formation spécialisée en cybersécurité couvrant la sécurité des réseaux, 
+                            la cryptographie, l'analyse de vulnérabilités et la gestion des incidents de sécurité.
+                        </p>
+                        <span class="timeline-score">En cours...</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2024/2025</span>
+                        <h3 class="timeline-title">Deuxième année - Formation de base informatique</h3>
+                        <p class="timeline-subtitle">ENSTA Dergana</p>
+                        <p class="timeline-description">
+                            Approfondissement des concepts informatiques fondamentaux, programmation avancée, 
+                            structures de données et algorithmes.
+                        </p>
+                        <span class="timeline-score">Moyenne: 12.85</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2023/2024</span>
+                        <h3 class="timeline-title">Première année - Formation de base informatique</h3>
+                        <p class="timeline-subtitle">ENSTA Dergana</p>
+                        <p class="timeline-description">
+                            Introduction aux concepts fondamentaux de l'informatique, programmation de base, 
+                            mathématiques appliquées et logique informatique.
+                        </p>
+                        <span class="timeline-score">Moyenne: 11.55</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2022/2023</span>
+                        <h3 class="timeline-title">Baccalauréat Sciences Expérimentales</h3>
+                        <p class="timeline-subtitle">Lycée Mohamed el Mokrani</p>
+                        <p class="timeline-description">
+                            Formation en sciences expérimentales avec spécialisation en mathématiques, 
+                            physique et sciences naturelles.
+                        </p>
+                        <span class="timeline-score">Moyenne: 17.34 - Mention TRÈS BIEN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <div class="skill-icon">
+                        <i data-lucide="code" style="color: #0a0a0a;"></i>
+                    </div>
+                    <h3 class="skill-title">Programmation</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Langage C</span>
+                            <div class="skill-level">
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <div class="skill-icon">
+                        <i data-lucide="terminal" style="color: #0a0a0a;"></i>
+                    </div>
+                    <h3 class="skill-title">Systèmes</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Linux Ubuntu</span>
+                            <div class="skill-level">
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Kali Linux</span>
+                            <div class="skill-level">
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot"></div>
+                                <div class="skill-dot"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <div class="skill-icon">
+                        <i data-lucide="shield" style="color: #0a0a0a;"></i>
+                    </div>
+                    <h3 class="skill-title">Cybersécurité</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Web Testing</span>
+                            <div class="skill-level">
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot"></div>
+                                <div class="skill-dot"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <div class="skill-icon">
+                        <i data-lucide="users" style="color: #0a0a0a;"></i>
+                    </div>
+                    <h3 class="skill-title">Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Travail collectif</span>
+                            <div class="skill-level">
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Agilité & Adaptabilité</span>
+                            <div class="skill-level">
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot active"></div>
+                                <div class="skill-dot"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Expérience</h2>
+            <div class="experience-grid">
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Formation sur les Commandes et Outils Kali Linux</h3>
+                            <p class="experience-company">Club Scientifique GDSC - ENSTA</p>
+                        </div>
+                        <span class="experience-date">2024/2025</span>
+                    </div>
+                    <p class="experience-description">
+                        Organisation et animation d'une formation complète sur les commandes et outils de Kali Linux 
+                        en collaboration avec le Club Scientifique GDSC. Cette formation a permis aux étudiants 
+                        de découvrir les outils de test de pénétration et de sécurité informatique.
+                    </p>
+                </div>
+                
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Conférence sur l'Introduction à la Cybersécurité</h3>
+                            <p class="experience-company">Club Scientifique GDSC - ENSTA</p>
+                        </div>
+                        <span class="experience-date">2025/2026</span>
+                    </div>
+                    <p class="experience-description">
+                        Organisation d'une conférence d'introduction à la cybersécurité destinée aux étudiants. 
+                        Présentation des enjeux actuels de la sécurité informatique, des menaces courantes 
+                        et des bonnes pratiques de sécurisation.
+                    </p>
+                </div>
+                
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Membre Actif</h3>
+                            <p class="experience-company">Club Scientifique GDSC</p>
+                        </div>
+                        <span class="experience-date">Nov 2024 - Présent</span>
+                    </div>
+                    <p class="experience-description">
+                        Participation active aux activités du Google Developer Student Club (GDSC) de l'ENSTA. 
+                        Collaboration sur divers projets technologiques et organisation d'événements éducatifs 
+                        pour la communauté étudiante.
+                    </p>
+                </div>
+                
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Formation Maintenance Téléphonique</h3>
+                            <p class="experience-company">Certification Professionnelle</p>
+                        </div>
+                        <span class="experience-date">2022</span>
+                    </div>
+                    <p class="experience-description">
+                        Obtention d'une attestation pour une formation spécialisée en maintenance de téléphone. 
+                        Acquisition de compétences techniques en réparation et diagnostic d'appareils mobiles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3 class="contact-title">Restons en contact</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Téléphone</h4>
+                            <p>+213 795532162</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>aa.boucenna@ensta.edu.dz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Adresse</h4>
+                            <p>86 RUE CJ LOT 229<br>Bordj Bou Arréridj, Algérie</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Institution</h4>
+                            <p>ENSTA Dergana<br>Bordj El Kiffane</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form fade-in">
+                    <h3 class="contact-title">Envoyez-moi un message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">Nom complet</label>
+                            <input type="text" class="form-input" placeholder="Votre nom" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="votre.email@exemple.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Sujet</label>
+                            <input type="text" class="form-input" placeholder="Sujet de votre message" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-textarea" placeholder="Votre message..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i data-lucide="send"></i>
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrixRain');
+            const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                let text = '';
+                for (let j = 0; j < 20; j++) {
+                    text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                
+                matrixContainer.appendChild(column);
+            }
+        }
+
+        // Network Nodes Effect
+        function createNetworkNodes() {
+            const networkContainer = document.getElementById('networkNodes');
+            const nodes = [];
+            
+            for (let i = 0; i < 20; i++) {
+                const node = document.createElement('div');
+                node.className = 'node';
+                node.style.left = Math.random() * 100 + '%';
+                node.style.top = Math.random() * 100 + '%';
+                node.style.animationDelay = Math.random() * 2 + 's';
+                
+                networkContainer.appendChild(node);
+                nodes.push({
+                    element: node,
+                    x: parseFloat(node.style.left),
+                    y: parseFloat(node.style.top)
+                });
+            }
+            
+            // Create connections between nearby nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const distance = Math.sqrt(
+                        Math.pow(nodes[i].x - nodes[j].x, 2) + 
+                        Math.pow(nodes[i].y - nodes[j].y, 2)
+                    );
+                    
+                    if (distance < 30) {
+                        const line = document.createElement('div');
+                        line.className = 'connection-line';
+                        
+                        const angle = Math.atan2(nodes[j].y - nodes[i].y, nodes[j].x - nodes[i].x);
+                        const length = distance;
+                        
+                        line.style.width = length + 'vw';
+                        line.style.left = nodes[i].x + '%';
+                        line.style.top = nodes[i].y + '%';
+                        line.style.transform = `rotate(${angle}rad)`;
+                        line.style.transformOrigin = '0 50%';
+                        line.style.animationDelay = Math.random() * 3 + 's';
+                        
+                        networkContainer.appendChild(line);
+                    }
+                }
+            }
+        }
+
+        // Initialize background effects
+        createMatrixRain();
+        createNetworkNodes();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // Update active link
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Smooth scroll to section
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Update active navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simple form validation
+            const formData = new FormData(e.target);
+            const name = formData.get('name') || e.target.querySelector('input[type="text"]').value;
+            const email = formData.get('email') || e.target.querySelector('input[type="email"]').value;
+            const subject = formData.get('subject') || e.target.querySelectorAll('input[type="text"]')[1].value;
+            const message = formData.get('message') || e.target.querySelector('textarea').value;
+
+            if (name && email && subject && message) {
+                // Create mailto link
+                const mailtoLink = `mailto:aa.boucenna@ensta.edu.dz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                window.location.href = mailtoLink;
+                
+                // Reset form
+                e.target.reset();
+                
+                // Show success message
+                alert('Votre message a été préparé. Votre client email va s\'ouvrir.');
+            } else {
+                alert('Veuillez remplir tous les champs du formulaire.');
+            }
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                const originalText = heroTitle.textContent;
+                typeWriter(heroTitle, originalText, 100);
+            }
+        });
+
+        // Add random glitch effect to certain elements
+        function addRandomGlitch() {
+            const glitchElements = document.querySelectorAll('.glitch');
+            glitchElements.forEach(element => {
+                if (Math.random() < 0.1) { // 10% chance
+                    element.style.animation = 'none';
+                    setTimeout(() => {
+                        element.style.animation = '';
+                    }, 100);
+                }
+            });
+        }
+
+        // Trigger random glitch effects
+        setInterval(addRandomGlitch, 3000);
+
+        // Add cyber scan line effect
+        function createScanLine() {
+            const scanLine = document.createElement('div');
+            scanLine.style.position = 'fixed';
+            scanLine.style.top = '0';
+            scanLine.style.left = '0';
+            scanLine.style.width = '100%';
+            scanLine.style.height = '2px';
+            scanLine.style.background = 'linear-gradient(90deg, transparent, var(--cyber-green), transparent)';
+            scanLine.style.zIndex = '9999';
+            scanLine.style.pointerEvents = 'none';
+            scanLine.style.opacity = '0.7';
+            
+            document.body.appendChild(scanLine);
+            
+            scanLine.animate([
+                { transform: 'translateY(0vh)', opacity: 0 },
+                { transform: 'translateY(50vh)', opacity: 0.7 },
+                { transform: 'translateY(100vh)', opacity: 0 }
+            ], {
+                duration: 2000,
+                easing: 'linear'
+            }).onfinish = () => {
+                scanLine.remove();
+            };
+        }
+
+        // Trigger scan line effect occasionally
+        setInterval(() => {
+            if (Math.random() < 0.3) { // 30% chance
+                createScanLine();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
